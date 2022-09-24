@@ -26,8 +26,7 @@ if (isset($_POST['url']) && isset($_POST['name'])){
 	imagejpeg($image, $st, 80);
 	exit;
 }
-if( isset($_FILES['file'] ) ) {
-	echo "<script type='text/javascript'>alert('message');</script>";
+if(isset($_FILES['file'])) {
 	$st = $PATH.$_FILES['file']['name'];
 	if (move_uploaded_file($_FILES['file']['tmp_name'], $st)) {
 		$info = getimagesize($st);
@@ -225,7 +224,6 @@ function drop(e) {
 		var item = items[i];
 		if( item.type.indexOf('image') === 0 ) {
 			submitFileForm(item.getAsFile(), "paste");
-			// console.log(item.getAsFile());
 			return;
 		}
 	}
