@@ -24,21 +24,37 @@ body{background-color:#0f0;background-image:linear-gradient(15deg, #000 81%, #f8
 	height: 15vh;
 	width: 100%;
 }
+#popup {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 80%;
+            text-align: center;
+            background-color: #222;
+            box-sizing: border-box;
+            padding: 10px;
+            z-index: 100;
+            display: none;
+        }
+button{
+	background-image: linear-gradient(-7deg, #f33, #f83 57%);
+}
 #button{display:none}
-#wrapp{padding:0 5px 15px;max-width:900px;margin:5px auto;background:rgba(0,55,185,0.5);border-radius:10px}
+#wrapp{padding:0 5px 15px;margin:5px auto;background:rgba(0,55,185,0.5);border-radius:10px}
 #image {display: block;width: 100%;}
 #right{background:#000;padding:2px;height:75vh}
 #left{top:0;left:0;padding:10px}
-#button{margin: 5px auto -10px auto;width:30%;font-size:1rem;text-align:center}
+#button{margin: 0 auto;width:20%;font-size:1rem;text-align:center}
 @media only screen and (max-width: 700px) {
-	#button{width:60%;}
+	#button{width:30%;}
 }
 </style>
-<script src="/cropper.min.js"></script>
-<script src="/jquery.min.js"></script>
-<script src="/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="/cropper.min.css"/>
-<link href='/blacktie-jquery-ui.min.css' rel='stylesheet'/>
+<script src="cropper.min.js"></script>
+<script src="jquery.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<link rel="stylesheet" href="cropper.min.css"/>
 </head>
 <body>
 <div id='wrapp'>
@@ -59,7 +75,11 @@ body{background-color:#0f0;background-image:linear-gradient(15deg, #000 81%, #f8
 <div id='new' style='cursor:pointer;width:20%;padding-bottom:20%;display:inline-block;background:url(data:image/png;base64,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) no-repeat center;background-size: contain;'></div>
 </div>
 </div>
+<div id='popup'/>
 <script>
+function popup() {
+	$("#popup").toggle();
+}
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -109,7 +129,8 @@ function drop(e) {
 		$('#button').fadeIn(500);
 		$('#crop').on('click', function () {
 			var res = cropper.getCroppedCanvas().toDataURL("image/jpeg");
-			$('<div></div>').append('body').dialog({width: "80vw",modal:"true",position:{my: "center", at:"top", of: window }}).html("<a href='"+res+"' download='scan'><button>Download</button></a><img id='imgs' src="+res+" width=100% />");
+			// $('<div></div>').append('body').dialog({width: "80vw",modal:"true",position:{my: "center", at:"top", of: window }}).html("<a href='"+res+"' download='foto'><button>Download</button></a><img id='imgs' src="+res+" width=100% />");
+			$('#popup').html("<div style='position:absolute'><a href='"+res+"' download='foto'><button>Download</button></a><button onclick='popup()'>Close</button></div><img id='imgs' src="+res+" height=100% />").toggle();
 		});
 		$('#scan').on('click', function () {
 			cropper.rotate(-45);
