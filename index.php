@@ -45,7 +45,7 @@ if(isset($_FILES['file'])) {
 $img='';
 $fli=array_reverse(glob("foto/*.{gif,png,jpg,jpeg}",GLOB_BRACE),false);
 $ran='?r';
-if(isset($_GET['r'])){shuffle($fli);$ran='wow.php';}
+if(isset($_GET['r'])){shuffle($fli);$ran='./';}
 foreach ($fli as $ind => $file) {
 	list($w, $h) = getimagesize($file);
     $img .= "<div class='responsive' alt='$file' title='".preg_replace('/foto\//','',$file)." ($w x $h)'><a target='_blank' href='$file'><img class='wow' loading='lazy' src='$file' index='$ind'></a></div>";
