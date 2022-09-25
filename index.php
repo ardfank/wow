@@ -121,7 +121,6 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 }
 #light{
 	display: none;
-	background:rgba(131, 51, 4, 0.8);
 	top:0;
 	bottom:0;
 	left:0;
@@ -231,6 +230,7 @@ function drop(e) {
 	function light(i){
 		$('#light').hide(000);
 		$('#light').fadeIn(200); 
+		$('#light').css('background','linear-gradient(rgba(255,80,0,.8), rgba(255,8,0,.5), rgba(0,0,0,.8)), url('+im[i]+')');
 		$('#wow').attr({'src':im[i],'title':im[i],'index':i});
 		$('#wow').css('transform','translate(0px) scale(1)');
 	 }
@@ -238,6 +238,7 @@ function drop(e) {
 	function ss(){
 		e=(e>=im.length||e=='')?0:e;
 		$('#light').fadeIn(200);
+		$('#light').css('background','linear-gradient(rgba(255,80,0,.8), rgba(255,8,0,.5), rgba(0,0,0,.8)), url('+im[e]+')');
 		$('#wow').attr({'src':im[e],'title':im[e],'index':e});
 		$('#wow').css('transform','translate(0px) scale(1)');
 		sst = setTimeout(ss, 5000);e++;
