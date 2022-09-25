@@ -12,18 +12,20 @@ $fli=$mg[array_rand($mg,1)];
 <html>
 <head>
 <title>WoW Sc4n</title>
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{background-color:#0f0;background-image:linear-gradient(15deg, #000 81%, #f80 90%,#fff 92%,#000 95%);height:100%;color:#fda;font: medium calibri;}
+body{background-image:url(<?=$fli?>);height:100%;font: medium calibri;}
 .sep{clear:both;width:100%}
 #up{
 	object-fit: contain;
-	margin:0 auto;
-	background:rgba(131, 51, 4, 0.8) url("up.jpg") no-repeat center/70%;
+	margin:10% auto;
+	background:rgba(131, 51, 4, 0.3);
 	border: 3px solid #a50;
 	height: 15vh;
 	width: 100%;
 }
+#pix{width:100%;display:inline-block;color:#fa8;background-color:rgba(0,0,0, 0.8);text-align:center}
+.bg{height:100vh;background-image:url(<?=$fli?>);filter: blur(5px);-webkit-filter: blur(5px);}
 #popup {
             position: absolute;
             top: 40%;
@@ -38,17 +40,30 @@ body{background-color:#0f0;background-image:linear-gradient(15deg, #000 81%, #f8
             z-index: 100;
             display: none;
         }
-button{
-	background-image: linear-gradient(-7deg, #f33, #f83 57%);
+.ptex {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
 }
+button{background-image: linear-gradient(-7deg, #f33, #f83 57%);}
 #button{display:none}
-#wrapp{padding:0 5px 15px;margin:5px auto;background:rgba(0,55,185,0.5);border-radius:10px}
+#wrapp{position:fixed;width:80%;left: 50%;transform: translate(-50%, -90%);text-align: center;}
 #image {display: block;width: 100%;}
-#right{background:#000;padding:2px;height:75vh}
+#right{background:#000;padding:2px;height:85vh}
 #left{top:0;left:0;padding:10px}
 #button{margin: 0 auto;width:20%;font-size:1rem;text-align:center}
-@media only screen and (max-width: 700px) {
-	#button{width:30%;}
+@media only screen and (max-width: 100px) {
+	#button{width:12%;}
 }
 </style>
 <script src="cropper.min.js"></script>
@@ -57,17 +72,8 @@ button{
 <link rel="stylesheet" href="cropper.min.css"/>
 </head>
 <body>
-<div id='wrapp'>
-            <span id="pix"></span>
-<div id='up' contenteditable='true' ondrop='drop(event)' ondragover='allowDrop(event)' >
-<div style="display:none;z-index:999999;width:100%;height:100%;background:#000 url('https://user-images.githubusercontent.com/13696193/54483119-cdc87600-4824-11e9-8c64-65211669755e.gif') no-repeat center;position:absolute;top:0;left:0;opacity:0.9" id='ads'></div>
-<input type="file" name="st" id="st" accept="image/*"/>
-</div>
-<div id='right'>
-<img id="image" src="<?=$fli?>"/></div>
-</div>
-<div class="sep"> </div>
-
+<div class="bg"><div id='right'><img id="image" src="<?=$fli?>"/></div>
+<div class="sep"></div><span id="pix"></span>
 <div id='left'>
 <div id='button'>
 <div id='scan' style='cursor:pointer;width:20%;padding-bottom:20%;display:inline-block;background:url(data:image/png;base64,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) no-repeat center;background-size: cover;'></div>
@@ -75,6 +81,16 @@ button{
 <div id='new' style='cursor:pointer;width:20%;padding-bottom:20%;display:inline-block;background:url(data:image/png;base64,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) no-repeat center;background-size: contain;'></div>
 </div>
 </div>
+</div>
+</div>
+<div id='wrapp'>
+<div id='up' contenteditable='true' ondrop='drop(event)' ondragover='allowDrop(event)' >
+<div style="display:none;z-index:999999;width:100%;height:100%;background:#000 url('https://user-images.githubusercontent.com/13696193/54483119-cdc87600-4824-11e9-8c64-65211669755e.gif') no-repeat center;position:absolute;top:0;left:0;opacity:0.9" id='ads'></div>
+<input type="file" name="st" id="st" accept="image/*"></input>
+<div class='ptex'>DRAG or PASTE YOUR PICTURE HERE</div>
+</div>
+</div>
+
 <div id='popup'/>
 <script>
 function popup() {
@@ -155,7 +171,8 @@ $(document).ready(function(){
 		fr.readAsDataURL(imgs);
 	});
 	document.getElementById('up').onpaste = function (e) {
-		$('#up').fadeOut();
+		$('#wrapp').fadeOut();
+		$('.bg').css({'filter':'blur(0)','-webkit-filter':'blur(0)','height':'0px'});
 		e.preventDefault();
 		e.stopPropagation();
 		var items = e.clipboardData.items;
