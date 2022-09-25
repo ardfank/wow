@@ -209,7 +209,7 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 <a href='edit.php' target='_blank' title='Crop Foto' style='background:url(<?=$icon['crop']?>)no-repeat center'></a>
 </div>
 <div id='up' contenteditable='true' ondrop='drop(event)' ondragover='allowDrop(event)' >
-<div style="display:none;z-index:999999;width:100%;height:100%;background:#000 url('https://user-images.githubusercontent.com/13696193/54483119-cdc87600-4824-11e9-8c64-65211669755e.gif') no-repeat center;position:absolute;top:0;left:0;opacity:0.9" id='ads'></div>
+<div style="display:none;z-index:999999;width:100%;height:100%;background:#000 url('loading.gif') no-repeat center;position:absolute;top:0;left:0;opacity:0.9" id='ads'></div>
 <input type="file" name="st" id="st" accept="image/*" style="position:absolute;bottom:0;margin:5px"/>
 <div class='ptex'>DRAG or PASTE YOUR PICTURE HERE</div>
 </div>
