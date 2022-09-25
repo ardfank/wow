@@ -359,7 +359,6 @@ function drop(e) {
 			if (xhr.status == 200) {
 				im.push("foto\/"+dt);
 				$('#gal').prepend("<div class='responsive' alt='"+dt+"' title='"+dt+"'><img class='wow' loading='lazy' src='foto/"+dt+"' index='"+(im.length-1)+"' onclick='javascript:light("+(im.length-1)+");'></div>");
-				// $('#up').toggle(200).html("");
 				$('#up,#ads').toggle(200);
 			}
 		};
@@ -392,7 +391,6 @@ function drop(e) {
 					$.post(window.location, {url: imgs,name: dt}, function() {
 						im.push("foto\/"+dt);
 						$('#gal').prepend("<div class='responsive' alt='"+dt+"' title='"+dt+"'><img class='wow' loading='lazy' src='foto/"+dt+"' index='"+(im.length-1)+"' onclick='javascript:light("+(im.length-1)+");'></div>");
-						// $('#up').toggle(200).html("");
 						$('#up,#ads').toggle(200);
 					});
 				}
