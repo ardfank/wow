@@ -230,6 +230,59 @@ var im=<?php echo json_encode($fli);?>;
 function allowDrop(ev) {
   ev.preventDefault();
 }
+
+//SWIPE EVENT START
+	document.getElementById("wow").addEventListener('touchstart', handleTouchStart, false);        
+	document.getElementById("wow").addEventListener('touchmove', handleTouchMove, false);
+	var xDown = null;                                                        
+	var yDown = null;
+
+	function getTouches(evt) {
+	  return evt.touches ||             // browser API
+			 evt.originalEvent.touches; // jQuery
+	}                                                     
+																			 
+	function handleTouchStart(evt) {
+		const firstTouch = getTouches(evt)[0];                                      
+		xDown = firstTouch.clientX;                                      
+		yDown = firstTouch.clientY;                                      
+	};                                                
+																			 
+	function handleTouchMove(evt) {
+		if ( ! xDown || ! yDown ) {
+			return;
+		}
+
+		var xUp = evt.touches[0].clientX;                                    
+		var yUp = evt.touches[0].clientY;
+
+		var xDiff = xDown - xUp;
+		var yDiff = yDown - yUp;
+																			 
+		if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+			if ( xDiff > 0 ) {
+				/* right swipe */ 
+				next(event);
+			} else {
+				/* left swipe */
+				prev(event);
+			}                       
+		} else {
+			if ( yDiff > 0 ) {
+				/* up swipe */
+				next(event);
+				event.stopPropagation();clearTimeout(sst);sst = setTimeout(ss, 5000);
+			} else { 
+				/* down swipe */
+				prev(event);
+			}                                                                 
+		}
+		/* reset values */
+		xDown = null;
+		yDown = null;                                             
+	};
+//
+
 function drop(e) {
 	$('#ads').show();
 	e.preventDefault();
@@ -250,14 +303,16 @@ function drop(e) {
 		$('#wow').attr({'src':im[i],'title':im[i],'index':i});
 		$('#wow').css('transform','translate(0px) scale(1)');
 	 }
-	var sst=0;var e='';
+	var sst=0;
 	function ss(){
+		var e=$('#wow').attr('index');
 		e=(e>=im.length||e=='')?0:e;
+		e++;
 		$('#light').fadeIn(200);
 		$('#light').css({'background':'linear-gradient(90deg,rgba(255,0,0,.3), rgba(0,0,0,1), rgba(0,0,255,.3)), url('+im[e]+') center','background-size':'contain'});
 		$('#wow').attr({'src':im[e],'title':im[e],'index':e});
 		$('#wow').css('transform','translate(0px) scale(1)');
-		sst = setTimeout(ss, 5000);e++;
+		sst = setTimeout(ss, 5000);
 	}
 	function next(e){
 		e.stopPropagation();
