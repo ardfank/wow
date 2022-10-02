@@ -214,7 +214,7 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 <div class='ptex'>DRAG or PASTE YOUR PICTURE HERE</div>
 </div>
 <div id='light'>
-<img id='wow'/>
+<img id='wow' index=0></img>
 <div id='prev' onclick='javascript:prev(event);'><img src='<?=$icon['prev']?>'/></div>
 <div id='next' onclick='javascript:next(event);'><img src='<?=$icon['next']?>'/></div>
 <div id='nav'>
