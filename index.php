@@ -87,6 +87,7 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 }
 .responsive {
   overflow: hidden;
+  display: none;
   float: left;
   width: 19.3vw;
   height: 19.3vw;
@@ -227,6 +228,13 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 <?=$img?></div>
 <script>
 var im=<?php echo json_encode($fli);?>;
+function los(en,os,f){
+	var ps = $(window).scrollTop() + $(window).height();
+		at = (en.offset().top-os);av = $(window).scrollTop();		
+			if(at > av && at < ps){
+				f();
+			}
+}
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -421,6 +429,19 @@ function drop(e) {
 	}	
 
  $(document).ready(function(){
+	$('.responsive').each(function(i,tem){
+		if(i<17){
+			$(this).fadeIn();
+		} 
+	 });
+	$(window).on('resize scroll', function() {
+		$('.responsive').each(function(){
+			var ene=$(this);
+			los($('footer'),150,function(){			
+				ene.fadeIn(1000);
+			});
+		});
+	});
 	 $('#st').change(function(){
 		 $('#ads').show();
 		var imgs=$(this).prop('files')[0];
@@ -490,5 +511,8 @@ function drop(e) {
 	});
 });
 </script>
+<div class='clearfix'></div>
+<hr/>
+<footer style='text-align:center'>--ooOOoo--</footer>
 </body>
 </html> 
