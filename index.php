@@ -429,17 +429,11 @@ function drop(e) {
 	}	
 
  $(document).ready(function(){
-	$('.responsive').each(function(){
+	$('.responsive').each(function(index){
 		var ene=$(this);
-		los($('footer'),15,function(){			
-			ene.fadeIn(5000);
-		});
-	});
-	$(window).on('resize scroll', function() {
-		$('.responsive').each(function(){
-			var ene=$(this);
-			los($('footer'),150,function(){			
-				ene.fadeIn(1000);
+		ene.delay(500*index).queue(function(){
+			los($('footer'),10,function(){			
+				ene.fadeIn(500).dequeue();
 			});
 		});
 	});
