@@ -429,11 +429,12 @@ function drop(e) {
 	}	
 
  $(document).ready(function(){
-	$('.responsive').each(function(i,tem){
-		if(i<17){
-			$(this).fadeIn();
-		} 
-	 });
+	$('.responsive').each(function(){
+		var ene=$(this);
+		los($('footer'),15,function(){			
+			ene.fadeIn(5000);
+		});
+	});
 	$(window).on('resize scroll', function() {
 		$('.responsive').each(function(){
 			var ene=$(this);
