@@ -48,7 +48,7 @@ $ran='?r';
 if(isset($_GET['r'])){shuffle($fli);$ran='./';}
 foreach ($fli as $ind => $file) {
 	list($w, $h) = getimagesize($file);
-    $img .= "<div class='responsive' alt='$file' title='".preg_replace('/foto\//','',$file)." ($w x $h)'><a target='_blank' href='$file'><img class='wow' loading='lazy' src='$file' index='$ind'></a></div>";
+    $img .= "<div class='responsive' index='$ind' alt='$file' title='".preg_replace('/foto\//','',$file)." ($w x $h)'><a target='_blank' href='$file'><img class='wow' loading='lazy' src='$file' index='$ind'></a></div>";
 }
 
 $icon = array();
@@ -426,17 +426,18 @@ function drop(e) {
 			}
 		};
 		xhr.send(formData);
+	}
+	function resv(){
+		los($('footer'),15,function(){
+			var idx=($('.responsive').is(':visible'))?parseInt($('.responsive:visible:last').attr('index'))+1:0;
+			var ene=$('.responsive[index='+idx+']');
+			ene.fadeIn(1500);
+			setTimeout(resv, 200)
+		});
 	}	
 
  $(document).ready(function(){
-	$('.responsive').each(function(index){
-		var ene=$(this);
-		ene.delay(500*index).queue(function(){
-			los($('footer'),10,function(){			
-				ene.fadeIn(500).dequeue();
-			});
-		});
-	});
+	resv();$(window).on('resize scroll',resv);
 	 $('#st').change(function(){
 		 $('#ads').show();
 		var imgs=$(this).prop('files')[0];
@@ -507,7 +508,6 @@ function drop(e) {
 });
 </script>
 <div class='clearfix'></div>
-<hr/>
-<footer style='text-align:center'>--ooOOoo--</footer>
+<footer style='text-align:center;position:relative;top:10px'></footer>
 </body>
 </html> 
