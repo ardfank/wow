@@ -228,12 +228,11 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 <?=$img?></div>
 <script>
 var im=<?php echo json_encode($fli);?>;
-function los(en,os,f){
-	var ps = $(window).scrollTop() + $(window).height();
-		at = (en.offset().top-os);av = $(window).scrollTop();		
-			if(at > av && at < ps){
-				f();
-			}
+function los(os,f){
+	var rect = document.getElementsByTagName("footer")[0].getBoundingClientRect();
+	if(rect.top-os < window.innerHeight && rect.bottom >= 0){
+		f();
+	}
 }
 function allowDrop(ev) {
   ev.preventDefault();
@@ -428,11 +427,11 @@ function drop(e) {
 		xhr.send(formData);
 	}
 	function resv(){
-		los($('footer'),15,function(){
+		los(15,function(){
 			var idx=($('.responsive').is(':visible'))?parseInt($('.responsive:visible:last').attr('index'))+1:0;
 			var ene=$('.responsive[index='+idx+']');
-			ene.fadeIn(1500);
-			setTimeout(resv, 200)
+			ene.fadeIn(500);
+			setTimeout(resv, 100)
 		});
 	}	
 
@@ -480,6 +479,16 @@ function drop(e) {
 		$(this).css('cursor','auto');
 	});
 	 document.onkeydown = function(e) {
+		 if(e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'TEXTAREA') {
+			switch (e.keyCode) {
+				case 190:
+					$("html,body").animate({ scrollTop: 0 },"slow");
+					break;
+				case 188:
+					$('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+					break;
+			}
+		}
 		 if($('#wow,#up').is(':visible')){
 			switch (e.keyCode) {
 				case 37:
@@ -508,6 +517,6 @@ function drop(e) {
 });
 </script>
 <div class='clearfix'></div>
-<footer style='text-align:center;position:relative;top:10px'></footer>
+<footer style='text-align:center;position:relative;top:10px'><a target='_blank' href='https://gps.networkreverse.com/mov/mov2.php?u=<?=($_GET['q']??"entaah")?>'><img src='loading.gif'/></a></footer>
 </body>
 </html> 
