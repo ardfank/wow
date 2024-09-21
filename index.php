@@ -9,6 +9,7 @@
 $PATH=dirname(__FILE__).'/foto/';
 if(isset($_POST['rem'])){
 	unlink($_POST['rem']);
+	exit;
 }
 if (isset($_POST['url']) && isset($_POST['name'])){
 	$imgs = file_get_contents($_POST['url']);
@@ -340,9 +341,10 @@ function drop(e) {
 	function rem(e){
 		e.stopPropagation();
 		var l=$('#wow').attr('src');
+		var li=parseInt($('#wow').attr('index'));
 		var r = confirm("Hapus file "+l+" ?");
 		if (r == true) {
-			$.post('',{rem:l}).done(function(){window.location.reload(true);});
+			$.post('',{rem:l}).done(function(){next(e);$(".responsive[index='"+li+"']").fadeOut(1000);});
 		}
 	}
 	function up(e){
