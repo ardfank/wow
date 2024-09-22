@@ -24,7 +24,8 @@ if (isset($_POST['url']) && isset($_POST['name'])){
 			$image = imagecreatefromgif($st);
 		elseif ($info['mime'] == 'image/png') 
 			$image = imagecreatefrompng($st);
-	imagejpeg($image, $st, 80);
+		// imagejpeg($image, $st, 95);
+		imagewebp($image, $st, 95);
 	exit;
 }
 if(isset($_FILES['file'])) {
@@ -39,7 +40,8 @@ if(isset($_FILES['file'])) {
 			$image = imagecreatefromgif($st);
 		elseif ($info['mime'] == 'image/png') 
 			$image = imagecreatefrompng($st);
-		imagejpeg($image, $st, 80);
+		// imagejpeg($image, $st, 95);
+		imagewebp($image, $st, 95);
 	}
 }
 
