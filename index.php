@@ -111,7 +111,7 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 	width: 10vw;
     height: 10vh;
     display: inline-block;
-	opacity:0.1;
+	opacity:0;
 }
 
 #prev,#next{
@@ -126,7 +126,7 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 	right:0;
 }
 #prev>img,#next>img{
-	opacity:0.1;
+	opacity:0;
 	object-fit: contain;
     width: 40%;
     height: 100%;
@@ -136,7 +136,7 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
 	transform: scale(1.5);
 }
 #prev:hover,#next:hover{
-	background:rgba(235,245,255,0.1);
+	background:rgba(235,245,255,0);
 }
 #light{
 	display: none;
@@ -202,13 +202,14 @@ body{background-color:#000;background-image:linear-gradient(15deg, #000 81%, #f8
   display: table;
   clear: both;
 }
+::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:gainsboro;border-radius:5px;}::-webkit-scrollbar-thumb{background:rgba(5,5,4,.5);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:#830;}
 </style>
 <script type='text/javascript' src='jquery.min.js'></script>
 </head>
 <body>
 <div class='random'>
 <a href='<?=$ran?>' title='Random Foto' style='background:url(<?=$icon['ran']?>)no-repeat center'></a>
-<a href='#' onclick='javascript:clearTimeout(sst);sst = setTimeout(ss, 2000);' title='Slideshow' style='background:url(<?=$icon['ss']?>)no-repeat center'></a>
+<a href='#' onclick='javascript:clearTimeout(sst);sst = setTimeout(ss, 1000);' title='Slideshow' style='background:url(<?=$icon['ss']?>)no-repeat center'></a>
 <a href='#' onclick='javascript:up(event);' title='Upload Foto'  style='background:url(<?=$icon['up']?>)no-repeat center'></a>
 <a href='edit.php' target='_blank' title='Crop Foto' style='background:url(<?=$icon['crop']?>)no-repeat center'></a>
 </div>
@@ -317,12 +318,12 @@ function drop(e) {
 	function ss(){
 		var e=$('#wow').attr('index');
 		e=(e>=im.length||e=='')?0:e;
-		e++;
+		// e++;
 		$('#light').fadeIn(200);
 		$('#light').css({'background':'linear-gradient(90deg,rgba(255,0,0,.3), rgba(0,0,0,1), rgba(0,0,255,.3)), url('+im[e]+') center','background-size':'contain'});
 		$('#wow').attr({'src':im[e],'title':im[e],'index':e});
 		$('#wow').css('transform','translate(0px) scale(1)');
-		sst = setTimeout(ss, 5000);
+		sst = setTimeout(()=>{$('#wow').attr('index',parseInt(e)+1);ss();}, 8000);
 	}
 	function next(e){
 		e.stopPropagation();
